@@ -32,7 +32,7 @@ export default function HomeProducstCarrousel() {
       {/* <Typography variant='h4' ml={2} mt={2}>Products</Typography> */}
       <Box
       sx={{
-      backgroundColor:'red',
+      // backgroundColor:'red',
       display:'flex',
       width:'100%',
       flexDirection:'row',
@@ -53,7 +53,9 @@ export default function HomeProducstCarrousel() {
           modules={[Autoplay, Pagination]}
           breakpoints={{
             0: {
-              slidesPerView: 1, // mobile < 640px
+              slidesPerView: 1,
+              spaceBetween: 20,
+              centeredSlides: true
             },
             824: {
               slidesPerView: 3, // small tablets
@@ -64,6 +66,10 @@ export default function HomeProducstCarrousel() {
             },
           }}
           className="mySwiper"
+          style={{
+    width: '100%',
+    // padding: '0 30px' 
+  }}
         >
           <SwiperSlide>
             <SwiperSlide>
@@ -75,6 +81,7 @@ export default function HomeProducstCarrousel() {
               //  fill={true}
                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50%, 33%"
                 objectFit="contain"
+                // style={{ width: '100%',height: 'auto',maxWidth: '300px'}}
               />
               {/* <Box sx={{display:'flex',alignItems:'center',gap:1}}>
           <Link href='/'>Title</Link>

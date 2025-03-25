@@ -66,13 +66,20 @@ borderRadius: '10px' */
     backgroundColor: (theme) => `${theme.palette.grey[800]}` */
 }
 
-.swipper{
-  margin:'0';
-  padding:'0';
+/* .swiper {
+ width: 100%; 
+ padding: 0 5% !important; 
 }
 
+.swiper-wrapper {
+  align-items: center;
+}
 
- 
+.swiper-slide {
+  width: auto !important;
+  height: auto !important;
+} */
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

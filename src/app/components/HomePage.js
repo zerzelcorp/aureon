@@ -104,7 +104,7 @@ export default function HomePage() {
           </Box>
       </Box>
       {/* <Box sx={{display:'flex',justifyContent:'center',alignItems:'center',backgroundColor:'grey',height:'300px',width:'100%'}}> */}
-           <HomeProducstCarrousel/>
+           {/* <HomeProducstCarrousel/> */}
       {/* </Box> */}
       <Box sx={{
         display:'flex',

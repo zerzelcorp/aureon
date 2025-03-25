@@ -60,11 +60,11 @@ export const theme = createTheme(
     },
     typography: {
       fontFamily: "var(--font-bellefair),sans-serif",
-      h1: {
+      //h1: {
         // fontSize: "7.5rem",
         // fontWeight: 700,
         // color: '#1a1a1a',
-      },
+      //},
       // h2: {
       //   fontSize: '2rem',
       //   fontWeight: 600,
@@ -76,10 +76,10 @@ export const theme = createTheme(
       //   fontSize: '1.5rem',
       //   fontWeight: 500,
       // },
-      body1: {
+      //body1: {
         // fontSize: "1.2rem",
         // lineHeight: 1.6,
-      },
+     // },
       //   bodybig: {
       //     fontSize: '1.4rem',
       //     lineHeight: 1.6,
