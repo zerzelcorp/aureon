@@ -39,8 +39,10 @@ useEffect(() => {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
+          flexDirection:{xs:'column',sm:'row'},
+          justifyContent: {xs:'start',sm:"space-between"},
+          alignItems: {xs:'start',sm:"center"},
+          gap:{xs:2,sm:0}
         }}
       >
         <Typography
