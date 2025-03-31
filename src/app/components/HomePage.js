@@ -72,8 +72,7 @@ export default function HomePage() {
               transition={{duration:0.4,delay:0.3,ease:'easeInOut'}}
            >
            <Typography sx={{p:4}}> 
-          Deserunt ex tempor tempor excepteur elit proident fugiat tempor. Sit esse enim aliqua laboris aliqua nulla ullamco est elit exercitation excepteur. Consequat culpa sunt culpa non. Consectetur exercitation dolore ex et non exercitation.
-           Deserunt ex tempor tempor excepteur elit proident fugiat tempor. Sit esse enim aliqua laboris aliqua nulla ullamco est elit exercitation excepteur. Consequat culpa sunt culpa non. Consectetur exercitation dolore ex et non exercitation. 
+           Discover the perfect balance between minimalism and warmth. Each curve, texture, and finish is designed to elevate your living space with effortless sophistication. Our handcrafted pieces reflect a timeless vision of modern luxury, grounded in nature’s finest materials.
            </Typography>
 
            </motion.div>
@@ -97,7 +96,7 @@ export default function HomePage() {
           transition={{duration:0.4,ease:'easeInOut'}}
           >
           <Typography sx={{p:4}}>
-           Deserunt ex tempor tempor excepteur elit proident fugiat tempor. Sit esse enim aliqua laboris aliqua nulla ullamco est elit exercitation excepteur. Consequat culpa sunt culpa non. Consectetur exercitation dolore ex et non exercitation.
+          Crafted for those who appreciate simplicity without compromise. This sculptural piece invites a quiet moment of reflection—an expression of style that speaks louder than words. Experience elegance in its most refined form.
           </Typography>
              </motion.div>
           </AnimatePresence>
@@ -123,10 +122,11 @@ export default function HomePage() {
         backgroundRepeat:'no-repeat'
       }}>
         <Typography variant='h5' p={8}>
-            Aute sint voluptate consequat commodo ipsum eu in. Velit do irure duis nulla commodo ut magna fugiat. Proident culpa irure id duis.
-            Aute sint voluptate consequat commodo ipsum eu in. Velit do irure duis nulla commodo ut magna fugiat. Proident culpa irure id duis.
+        Every detail tells a story. From the grain of solid wood to the precise lines of our craftsmanship, Bellagio redefines contemporary living with a curated collection of furniture designed to inspire. Discover a world where comfort meets artful design.
         </Typography>
-        <Button variant='contained' sx={{fontSize:'1.2rem',p:2,boxShadow:2,":hover":{boxShadow:4,transform:'transaleY(-4px)'}}}>Explore</Button>
+        <Link href='living/chairs'>
+          <Button variant='contained' sx={{fontSize:'1.2rem',p:2,boxShadow:2,":hover":{boxShadow:4,transform:'transaleY(-4px)'}}}>Explore</Button>
+        </Link>
         {/* <Button variant='contained'>other</Button> */}
       </Box>
       <Box sx={{display:'flex',flexDirection:'column',gap:6,justifyContent:'center',alignItems:'center',height:'350px',width:'100%'}}>
