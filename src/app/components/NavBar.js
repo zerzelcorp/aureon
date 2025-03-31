@@ -237,6 +237,16 @@ function NavBar() {
                       Coffee Tables
                      </ListItemButton>
                     </Link>
+                    <Link href='/living/side-tables'>
+                     <ListItemButton
+                      sx={{
+                        transition: "all 200ms ease-in-out",
+                        ":hover": { backgroundColor: "black" },
+                      }}
+                    >
+                      Side Tables
+                     </ListItemButton>
+                    </Link>
                   </List>
                   <List
                     sx={{
@@ -471,6 +481,9 @@ function NavBar() {
                 </MenuItem>
                 <MenuItem component={Link} href="/living/sofas">
                   Sofas
+                </MenuItem>
+                <MenuItem component={Link} href="/living/side-tables">
+                  Side Tables
                 </MenuItem>
                 <MenuItem component={Link} href="/living/coffee-tables">
                   Coffee Tables

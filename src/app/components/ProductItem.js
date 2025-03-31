@@ -9,7 +9,7 @@ export default function ProductItem({item}) {
  const {cartItems, removeItemFromCart,addToCart,cartSubTotalBalance,cartTotalBalance,data} = useCartStore(); 
 
 useEffect(() => {
-  //  console.log('item in product item:',item);
+  console.log('item in product item:',item);
 }, [item])
 
   return (
@@ -62,9 +62,7 @@ useEffect(() => {
       </Box>
       <Divider />
       <Typography color="text.dark" mt={2} variant="body1">
-        Anim laboris ipsum ullanostrud.dent anim qui ad.Quis consectetur
-        veniam reprehenderit culpa anim aliqua exercitation pariatur
-        aute aliqua id elit.
+       {item.description}
       </Typography>
     </CardContent>
     <CardActions

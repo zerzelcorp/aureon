@@ -306,3 +306,5 @@ export const theme = createTheme(
   ptPT,
   ptBR
 );
+
+export const responsiveFonts = responsiveFontSizes(theme);

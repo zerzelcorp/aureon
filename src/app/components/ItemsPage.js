@@ -18,6 +18,7 @@ import React, { useState, useEffect } from "react";
 import ProductItem from "./ProductItem";
 import useCartStore from "../stores/useCartStore";
 import {motion} from 'framer-motion'
+import { Grid } from "swiper/modules";
 
 export default function ItemsPage({ title }) {
   const [filterval, setFilter] = useState("");
@@ -48,8 +49,6 @@ useEffect(() => {
       setItems(sideTables);
     }else if(title == 'Coffe Tables'){
       setItems(coffeeTables);
-    }else if(title == 'Chairs'){
-      setItems(data);
     }else if(title == 'Dining Chairs'){
       setItems(diningChairs);
     }
@@ -71,7 +70,7 @@ useEffect(() => {
     }
  
     // setItems(data);
-    // console.log("items itemPage:",items);
+    console.log("items itemPage:",items);
 }, [title,items])
 
 
