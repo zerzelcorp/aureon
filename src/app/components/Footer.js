@@ -29,10 +29,7 @@ export default function Footer() {
             Aureon
           </Typography>
           <Typography variant="body2" sx={{ mb: 2 }}>
-            Experience the rich tradition of authentic Italian cuisine, where
-            every pizza is handcrafted with the finest ingredients, baked to
-            perfection, and served with passion. A taste of Italy in every
-            bite.
+          Immerse yourself in the world of timeless elegance and refined design. At Aureon, each piece is a testament to masterful craftsmanship—where form meets function, and beauty lives in every detail. From sculptural seating to bespoke tables, we create furniture that transforms spaces into experiences.
           </Typography>
           <Typography variant="body2">
             Contact Us: info@aureon.com | (555) 123-4567
@@ -43,11 +40,11 @@ export default function Footer() {
         </Grid>
 
         {/* Navigation Links Section */}
-        <Grid item xs={12} sm={6} md={2}>
+        <Grid item xs={12} sm={6} md={2} gap={4}>
           <Typography variant="h6" gutterBottom sx={{ fontWeight: "bold" }}>
             Quick Links
           </Typography>
-          <Box>
+          <Box sx={{display:'flex',gap:2}}>
             <Link
               href="/properties"
               color="inherit"

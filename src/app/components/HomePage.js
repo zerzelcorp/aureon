@@ -30,7 +30,7 @@ export default function HomePage() {
          style={{width:'100%'}}
          >
          <Typography variant='h1' sx={{fontSize:{xs:'6rem',md:'10rem'}}}>Aureon</Typography>
-         <Typography variant='body1'>
+         <Typography variant='body1' sx={{fontWeight:500,fontSize:'1.5rem'}}>
          Immerse yourself in a world of elegance and distinction with Aureon, where luxury furniture and interior design come together to create unique spaces. Each piece is a statement of style, blending premium materials, sophisticated lines, and impeccable craftsmanship. Prestige, quality, and exclusivity define our essence.
          </Typography>
          </motion.div>
@@ -58,7 +58,7 @@ export default function HomePage() {
             display:'flex',
             alignItems:'center',
             width:{xs:'100%',lg:'50%'},
-            backgroundImage:"url('/content1.jpg')",
+            backgroundImage:"linear-gradient(rgba(0, 0, 0, 0.18), rgba(30, 29, 29, 0.22)),url('/content1.jpg')",
             backgroundSize: "cover",
             backgroundColor:'primary.main',
             backgroundPosition:'center',
@@ -71,7 +71,7 @@ export default function HomePage() {
               animate={{opacity:1,y:0}}
               transition={{duration:0.4,delay:0.3,ease:'easeInOut'}}
            >
-           <Typography sx={{p:4}}> 
+           <Typography sx={{p:4,fontWeight:500,fontSize:'1.5rem'}}> 
            Discover the perfect balance between minimalism and warmth. Each curve, texture, and finish is designed to elevate your living space with effortless sophistication. Our handcrafted pieces reflect a timeless vision of modern luxury, grounded in nature’s finest materials.
            </Typography>
 
@@ -82,7 +82,7 @@ export default function HomePage() {
             display:'flex',
             alignItems:'center',
             width:{xs:'100%',lg:'50%'},
-            backgroundImage:"url('/content2.jpg')",
+            backgroundImage:"linear-gradient(rgba(0, 0, 0, 0.35), rgba(30, 29, 29, 0.26)),url('/content2.jpg')",
             backgroundSize: "cover",
             backgroundColor:'primary.main',
             backgroundPosition:'center',
@@ -95,8 +95,8 @@ export default function HomePage() {
           animate={{opacity:1,y:0}}
           transition={{duration:0.4,ease:'easeInOut'}}
           >
-          <Typography sx={{p:4}}>
-          Crafted for those who appreciate simplicity without compromise. This sculptural piece invites a quiet moment of reflection—an expression of style that speaks louder than words. Experience elegance in its most refined form.
+          <Typography sx={{p:4,fontWeight:500,fontSize:'1.5rem'}}>
+          Crafted for those who appreciate quality and simplicity. An expression of style that speaks louder than words. Experience elegance in its most refined form.
           </Typography>
              </motion.div>
           </AnimatePresence>
@@ -115,14 +115,13 @@ export default function HomePage() {
         gap:4,
         p:2,
         alignItems:'center',
-        backgroundImage:"url('/leather-couch.jpg')",
+        backgroundImage:"linear-gradient(rgba(0, 0, 0, 0.18), rgba(30, 29, 29, 0.22)),url('/leather-couch.jpg')",
         backgroundSize: "cover",
-        backgroundColor:'primary.main',
         backgroundPosition:'center',
         backgroundRepeat:'no-repeat'
       }}>
-        <Typography variant='h5' p={8}>
-        Every detail tells a story. From the grain of solid wood to the precise lines of our craftsmanship, Bellagio redefines contemporary living with a curated collection of furniture designed to inspire. Discover a world where comfort meets artful design.
+        <Typography variant='h5' p={8} fontSize='2rem'>
+        Every detail tells a story. From the grain of solid wood to the precise lines of our craftsmanship, Aureon redefines contemporary living with a curated collection of furniture designed to inspire. Discover a world where comfort meets artful design.
         </Typography>
         <Link href='living/chairs'>
           <Button variant='contained' sx={{fontSize:'1.2rem',p:2,boxShadow:2,":hover":{boxShadow:4,transform:'transaleY(-4px)'}}}>Explore</Button>
