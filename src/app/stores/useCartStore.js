@@ -570,7 +570,7 @@ newArrivals:[
     image:'/sidetables/stable1.jpg',
     description:'Sleek black gloss finish with a modern C-shaped silhouette and integrated book shelf.',
     category: "living",
-    productType: "sidetables"
+    productType: "side-tables"
   },
   {
     id: 4444444,
