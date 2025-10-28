@@ -48,27 +48,12 @@ function NavBar() {
     setOpenDrawerMenu(newOpen);
   };
 
-  const handleHoverOpen = (event, label) => {
-    setHoverAnchor((prev) => ({ ...prev, [label]: event.currentTarget }));
-  };
-
-  const handleHoverClose = (label) => {
-    setHoverAnchor((prev) => ({ ...prev, [label]: null }));
-  };
-
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
   };
 
   useEffect(() => {
@@ -446,16 +431,21 @@ function NavBar() {
             </Link>
           </Box>
           {/* DEFAULT BIG MENU LINKS */}
-          <Box sx={{ flexGrow: 1, display: { xs: "none", sm: "flex" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", sm: "flex" }, gap: 1 }}>
             <MenuItem
-              sx={{ cursor: "pointer" }}
+              sx={{ 
+                cursor: "pointer",
+                px: 2,
+                py: 1,
+                borderRadius: 1,
+                transition: 'all 0.2s ease-in-out',
+                '&:hover': {
+                  backgroundColor: 'rgba(255,255,255,0.05)',
+                }
+              }}
               onMouseEnter={(e) => {
                 setActiveMenu("living");
                 setAnchorEl(e.currentTarget);
-              }}
-              onMouseLeave={() => {
-                setActiveMenu(null);
-                setAnchorEl(null);
               }}
             >
               <Link href="/living">Living</Link>
@@ -467,38 +457,107 @@ function NavBar() {
                   setAnchorEl(null);
                 }}
                 MenuListProps={{
-                  onMouseEnter: () => setActiveMenu("living"),
-                  onMouseLeave: () => {
-                    setActiveMenu(null);
-                    setAnchorEl(null);
+                  onMouseEnter: () => {
+                    setActiveMenu("living");
                   },
+                  onMouseLeave: () => {
+                    setTimeout(() => {
+                      setActiveMenu(null);
+                      setAnchorEl(null);
+                    }, 100);
+                  },
+                  sx: { py: 1, px: 0.5 }
                 }}
-                anchorOrigin={{ vertical: "bottom", horizontal: 0 }}
-                transformOrigin={{ vertical: "top", horizontal: 0 }}
+                anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                transformOrigin={{ vertical: "top", horizontal: "left" }}
+                sx={{
+                  mt: 1,
+                  '& .MuiPaper-root': {
+                    backgroundColor: 'rgba(0, 0, 0, 0.85)',
+                    backdropFilter: 'blur(10px)',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    borderRadius: '8px',
+                    minWidth: '180px',
+                  }
+                }}
+                transitionDuration={{ enter: 200, exit: 150 }}
               >
-                <MenuItem component={Link} href="/living/chairs">
+                <MenuItem 
+                  component={Link} 
+                  href="/living/chairs"
+                  sx={{
+                    py: 1.5,
+                    px: 2,
+                    transition: 'all 0.2s ease-in-out',
+                    '&:hover': {
+                      backgroundColor: 'rgba(255,255,255,0.1)',
+                      transform: 'translateX(4px)',
+                    }
+                  }}
+                >
                   Chairs
                 </MenuItem>
-                <MenuItem component={Link} href="/living/sofas">
+                <MenuItem 
+                  component={Link} 
+                  href="/living/sofas"
+                  sx={{
+                    py: 1.5,
+                    px: 2,
+                    transition: 'all 0.2s ease-in-out',
+                    '&:hover': {
+                      backgroundColor: 'rgba(255,255,255,0.1)',
+                      transform: 'translateX(4px)',
+                    }
+                  }}
+                >
                   Sofas
                 </MenuItem>
-                <MenuItem component={Link} href="/living/side-tables">
+                <MenuItem 
+                  component={Link} 
+                  href="/living/side-tables"
+                  sx={{
+                    py: 1.5,
+                    px: 2,
+                    transition: 'all 0.2s ease-in-out',
+                    '&:hover': {
+                      backgroundColor: 'rgba(255,255,255,0.1)',
+                      transform: 'translateX(4px)',
+                    }
+                  }}
+                >
                   Side Tables
                 </MenuItem>
-                <MenuItem component={Link} href="/living/coffee-tables">
+                <MenuItem 
+                  component={Link} 
+                  href="/living/coffee-tables"
+                  sx={{
+                    py: 1.5,
+                    px: 2,
+                    transition: 'all 0.2s ease-in-out',
+                    '&:hover': {
+                      backgroundColor: 'rgba(255,255,255,0.1)',
+                      transform: 'translateX(4px)',
+                    }
+                  }}
+                >
                   Coffee Tables
                 </MenuItem>
               </Menu>
             </MenuItem>
             <MenuItem
-              sx={{ cursor: "pointer" }}
+              sx={{ 
+                cursor: "pointer",
+                px: 2,
+                py: 1,
+                borderRadius: 1,
+                transition: 'all 0.2s ease-in-out',
+                '&:hover': {
+                  backgroundColor: 'rgba(255,255,255,0.05)',
+                }
+              }}
               onMouseEnter={(e) => {
                 setActiveMenu("dining");
                 setAnchorEl(e.currentTarget);
-              }}
-              onMouseLeave={() => {
-                setActiveMenu(null);
-                setAnchorEl(null);
               }}
             >
               <Link href="/dining">Dining</Link>
@@ -510,35 +569,92 @@ function NavBar() {
                   setAnchorEl(null);
                 }}
                 MenuListProps={{
-                  onMouseEnter: () => setActiveMenu("dining"),
-                  onMouseLeave: () => {
-                    setActiveMenu(null);
-                    setAnchorEl(null);
+                  onMouseEnter: () => {
+                    setActiveMenu("dining");
                   },
+                  onMouseLeave: () => {
+                    setTimeout(() => {
+                      setActiveMenu(null);
+                      setAnchorEl(null);
+                    }, 100);
+                  },
+                  sx: { py: 1, px: 0.5 }
                 }}
-                anchorOrigin={{ vertical: "bottom", horizontal: 0 }}
-                transformOrigin={{ vertical: "top", horizontal: 0 }}
+                anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                transformOrigin={{ vertical: "top", horizontal: "left" }}
+                sx={{
+                  mt: 1,
+                  '& .MuiPaper-root': {
+                    backgroundColor: 'rgba(0, 0, 0, 0.85)',
+                    backdropFilter: 'blur(10px)',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    borderRadius: '8px',
+                    minWidth: '180px',
+                  }
+                }}
+                transitionDuration={{ enter: 200, exit: 150 }}
               >
-                <MenuItem component={Link} href="/dining/dining-chairs">
+                <MenuItem 
+                  component={Link} 
+                  href="/dining/dining-chairs"
+                  sx={{
+                    py: 1.5,
+                    px: 2,
+                    transition: 'all 0.2s ease-in-out',
+                    '&:hover': {
+                      backgroundColor: 'rgba(255,255,255,0.1)',
+                      transform: 'translateX(4px)',
+                    }
+                  }}
+                >
                   Dining Chairs
                 </MenuItem>
-                <MenuItem component={Link} href="/dining/dining-tables">
+                <MenuItem 
+                  component={Link} 
+                  href="/dining/dining-tables"
+                  sx={{
+                    py: 1.5,
+                    px: 2,
+                    transition: 'all 0.2s ease-in-out',
+                    '&:hover': {
+                      backgroundColor: 'rgba(255,255,255,0.1)',
+                      transform: 'translateX(4px)',
+                    }
+                  }}
+                >
                   Dining Tables
                 </MenuItem>
-                <MenuItem component={Link} href="/dining/sideboards">
+                <MenuItem 
+                  component={Link} 
+                  href="/dining/sideboards"
+                  sx={{
+                    py: 1.5,
+                    px: 2,
+                    transition: 'all 0.2s ease-in-out',
+                    '&:hover': {
+                      backgroundColor: 'rgba(255,255,255,0.1)',
+                      transform: 'translateX(4px)',
+                    }
+                  }}
+                >
                   Sideboards
                 </MenuItem>
               </Menu>
             </MenuItem>
             <MenuItem
-              sx={{ cursor: "pointer" }}
+              sx={{ 
+                cursor: "pointer",
+                px: 2,
+                py: 1,
+                borderRadius: 1,
+                transition: 'all 0.2s ease-in-out',
+                '&:hover': {
+                  backgroundColor: 'rgba(255,255,255,0.05)',
+                }
+              }}
               onMouseEnter={(e) => {
                 setActiveMenu("bedroom");
                 setAnchorEl(e.currentTarget);
-              }}
-              onMouseLeave={() => {
-                setActiveMenu(null);
-                setAnchorEl(null);
               }}
             >
               <Link href="/bedroom">Bedroom</Link>
@@ -550,32 +666,77 @@ function NavBar() {
                   setAnchorEl(null);
                 }}
                 MenuListProps={{
-                  onMouseEnter: () => setActiveMenu("bedroom"),
-                  onMouseLeave: () => {
-                    setActiveMenu(null);
-                    setAnchorEl(null);
+                  onMouseEnter: () => {
+                    setActiveMenu("bedroom");
                   },
+                  onMouseLeave: () => {
+                    setTimeout(() => {
+                      setActiveMenu(null);
+                      setAnchorEl(null);
+                    }, 100);
+                  },
+                  sx: { py: 1, px: 0.5 }
                 }}
-                anchorOrigin={{ vertical: "bottom", horizontal: 0 }}
-                transformOrigin={{ vertical: "top", horizontal: 0 }}
+                anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                transformOrigin={{ vertical: "top", horizontal: "left" }}
+                sx={{
+                  mt: 1,
+                  '& .MuiPaper-root': {
+                    backgroundColor: 'rgba(0, 0, 0, 0.85)',
+                    backdropFilter: 'blur(10px)',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    borderRadius: '8px',
+                    minWidth: '180px',
+                  }
+                }}
+                transitionDuration={{ enter: 200, exit: 150 }}
               >
-                <MenuItem component={Link} href="/bedroom/beds">
+                <MenuItem 
+                  component={Link} 
+                  href="/bedroom/beds"
+                  sx={{
+                    py: 1.5,
+                    px: 2,
+                    transition: 'all 0.2s ease-in-out',
+                    '&:hover': {
+                      backgroundColor: 'rgba(255,255,255,0.1)',
+                      transform: 'translateX(4px)',
+                    }
+                  }}
+                >
                   Beds
                 </MenuItem>
-                <MenuItem component={Link} href="/bedroom/nightstands">
+                <MenuItem 
+                  component={Link} 
+                  href="/bedroom/nightstands"
+                  sx={{
+                    py: 1.5,
+                    px: 2,
+                    transition: 'all 0.2s ease-in-out',
+                    '&:hover': {
+                      backgroundColor: 'rgba(255,255,255,0.1)',
+                      transform: 'translateX(4px)',
+                    }
+                  }}
+                >
                   Nightstands
                 </MenuItem>
               </Menu>
             </MenuItem>
             <MenuItem
-              sx={{ cursor: "pointer" }}
+              sx={{ 
+                cursor: "pointer",
+                px: 2,
+                py: 1,
+                borderRadius: 1,
+                transition: 'all 0.2s ease-in-out',
+                '&:hover': {
+                  backgroundColor: 'rgba(255,255,255,0.05)',
+                }
+              }}
               onMouseEnter={(e) => {
                 setActiveMenu("collections");
                 setAnchorEl(e.currentTarget);
-              }}
-              onMouseLeave={() => {
-                setActiveMenu(null);
-                setAnchorEl(null);
               }}
             >
               <Link href="/collections">Collections</Link>
@@ -587,24 +748,46 @@ function NavBar() {
                   setAnchorEl(null);
                 }}
                 MenuListProps={{
-                  onMouseEnter: () => setActiveMenu("collections"),
-                  onMouseLeave: () => {
-                    setActiveMenu(null);
-                    setAnchorEl(null);
+                  onMouseEnter: () => {
+                    setActiveMenu("collections");
                   },
+                  onMouseLeave: () => {
+                    setTimeout(() => {
+                      setActiveMenu(null);
+                      setAnchorEl(null);
+                    }, 100);
+                  },
+                  sx: { py: 1, px: 0.5 }
                 }}
-                anchorOrigin={{ vertical: "bottom", horizontal: 0 }}
-                transformOrigin={{ vertical: "top", horizontal: 0 }}
+                anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                transformOrigin={{ vertical: "top", horizontal: "left" }}
+                sx={{
+                  mt: 1,
+                  '& .MuiPaper-root': {
+                    backgroundColor: 'rgba(0, 0, 0, 0.85)',
+                    backdropFilter: 'blur(10px)',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    borderRadius: '8px',
+                    minWidth: '180px',
+                  }
+                }}
+                transitionDuration={{ enter: 200, exit: 150 }}
               >
-                <MenuItem component={Link} href="/collections/new-arrivals">
+                <MenuItem 
+                  component={Link} 
+                  href="/collections/new-arrivals"
+                  sx={{
+                    py: 1.5,
+                    px: 2,
+                    transition: 'all 0.2s ease-in-out',
+                    '&:hover': {
+                      backgroundColor: 'rgba(255,255,255,0.1)',
+                      transform: 'translateX(4px)',
+                    }
+                  }}
+                >
                   New Arrivals
                 </MenuItem>
-                {/* <MenuItem component={Link} href="/collections/winter-2025">
-                  Winter 2025
-                </MenuItem>
-                <MenuItem component={Link} href="/collections/fall-2025">
-                  Fall 2025
-                </MenuItem> */}
               </Menu>
             </MenuItem>
             {/* <MenuItem
