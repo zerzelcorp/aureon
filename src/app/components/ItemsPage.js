@@ -104,84 +104,146 @@ const cascadeVariants = {
       ))}
     </Box>
  {/* FILTERS */}
-        {/* <Box
+        <Box
           sx={{
-            width: "65%",
-            p: 4,
-            gap: 2,
+            width: "100%",
+            p: { xs: 2, sm: 3, md: 4 },
+            gap: { xs: 2, sm: 3 },
             display: "flex",
-            flexDirection: "row",
-            justifyContent: "start",
-            alignItems: "center",
+            flexDirection: { xs: "column", sm: "row" },
+            justifyContent: "space-between",
+            alignItems: { xs: "stretch", sm: "center" },
+            backgroundColor: "rgba(0,0,0,0.02)",
+            borderRadius: 2,
+            border: "1px solid rgba(128,128,128,0.1)",
+            mb: 4,
+            backdropFilter: "blur(10px)",
           }}
         >
-          <Box width="100%">
-            <Typography color="text.muted">Filter By Material:</Typography>
-            <FormControl fullWidth>
-              <InputLabel id="filterbymaterial">Filter 1</InputLabel>
+          <Box sx={{ width: { xs: "100%", sm: "30%" } }}>
+            <Typography 
+              color="text.primary" 
+              variant="body2" 
+              fontWeight={500}
+              sx={{ mb: 1 }}
+            >
+              Material
+            </Typography>
+            <FormControl fullWidth size="small">
+              <InputLabel id="filterbymaterial">Select Material</InputLabel>
               <Select
                 labelId="filterbymaterial"
                 id="filterbymaterial"
                 value={filterbymaterial}
-                label="Filter By"
+                label="Select Material"
                 onChange={handleFilterByMaterial}
+                sx={{
+                  backgroundColor: "rgba(255,255,255,0.05)",
+                  borderRadius: 1,
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(128,128,128,0.3)",
+                  },
+                  "&:hover .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(128,128,128,0.5)",
+                  },
+                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "primary.main",
+                  },
+                }}
               >
-                <MenuItem value="other">Leather</MenuItem>
-                <MenuItem value="cotton">Filter 2</MenuItem>
-                <MenuItem value="leather">Filter 3</MenuItem>
+                <MenuItem value="">None</MenuItem>
+                <MenuItem value="leather">Italian Leather</MenuItem>
+                <MenuItem value="fabric">Premium Fabric</MenuItem>
+                <MenuItem value="wood">Solid Wood</MenuItem>
+                <MenuItem value="metal">Brushed Steel</MenuItem>
               </Select>
             </FormControl>
           </Box>
-          <Box width="100%">
-          <Typography color="text.muted">Filter By Model:</Typography>
-            <FormControl fullWidth>
-              <InputLabel id="filterbymodel">Filter2:</InputLabel>
+          
+          <Box sx={{ width: { xs: "100%", sm: "30%" } }}>
+            <Typography 
+              color="text.primary" 
+              variant="body2" 
+              fontWeight={500}
+              sx={{ mb: 1 }}
+            >
+              Style
+            </Typography>
+            <FormControl fullWidth size="small">
+              <InputLabel id="filterbymodel">Select Style</InputLabel>
               <Select
                 labelId="filterbymodel"
                 id="filterbymodel"
                 value={filterbymodel}
-                label="Filter By"
+                label="Select Style"
                 onChange={handleFilterByModel}
+                sx={{
+                  backgroundColor: "rgba(255,255,255,0.05)",
+                  borderRadius: 1,
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(128,128,128,0.3)",
+                  },
+                  "&:hover .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(128,128,128,0.5)",
+                  },
+                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "primary.main",
+                  },
+                }}
               >
-                <MenuItem value="other">Filter 1</MenuItem>
-                <MenuItem value="cotton">Filter 2</MenuItem>
-                <MenuItem value="leather">Filter 3</MenuItem>
+                <MenuItem value="">None</MenuItem>
+                <MenuItem value="modern">Modern</MenuItem>
+                <MenuItem value="contemporary">Contemporary</MenuItem>
+                <MenuItem value="minimalist">Minimalist</MenuItem>
+                <MenuItem value="luxury">Luxury</MenuItem>
               </Select>
             </FormControl>
           </Box>
-          <Box width="100%">
-          <Typography color="text.muted">Filter By Availability:</Typography>
-            <FormControl fullWidth>
-              <InputLabel id="filterby" color="white">Filter 3:</InputLabel>
+          
+          <Box sx={{ width: { xs: "100%", sm: "30%" } }}>
+            <Typography 
+              color="text.primary" 
+              variant="body2" 
+              fontWeight={500}
+              sx={{ mb: 1 }}
+            >
+              Availability
+            </Typography>
+            <FormControl fullWidth size="small">
+              <InputLabel id="filterby">Select Availability</InputLabel>
               <Select
                 labelId="filterby"
                 id="filterby-select"
                 value={filterval}
-                label="Filter By"
+                label="Select Availability"
                 onChange={handleFilterByChange}
-                fullWidth
-                // MenuProps={{
-                //   slotProps: {
-                //     paper: {
-                //       sx: {
-                //         backgroundColor: "primary.main",
-                //         color: "text.primary",
-                //       },
-                //     },
-                //   },
-                // }}
+                sx={{
+                  backgroundColor: "rgba(255,255,255,0.05)",
+                  borderRadius: 1,
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(128,128,128,0.3)",
+                  },
+                  "&:hover .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "rgba(128,128,128,0.5)",
+                  },
+                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "primary.main",
+                  },
+                }}
               >
-                <MenuItem value="other">Filter 1</MenuItem>
-                <MenuItem value="cotton">Filter 2</MenuItem>
-                <MenuItem value="leather">Filter 3</MenuItem>
+                <MenuItem value="">None</MenuItem>
+                <MenuItem value="in-stock">In Stock</MenuItem>
+                <MenuItem value="limited">Limited Edition</MenuItem>
+                <MenuItem value="made-to-order">Made to Order</MenuItem>
+                <MenuItem value="pre-order">Pre-Order</MenuItem>
               </Select>
             </FormControl>
           </Box>
-        </Box> */}
+        </Box>
   {/* ITEMS GRID       */}
-        <Grid2 container spacing={2}>
+        <Grid2 container spacing={2} sx={{ alignItems: "stretch" }}>
           {items.map((item) => (
-            <Grid2 key={item.id} size={{ xs: 12, sm: 6, md: 4, lg: 4 }} p={2}>
+            <Grid2 key={item.id} size={{ xs: 12, sm: 6, md: 4, lg: 4 }} p={2} sx={{ display: "flex" }}>
               <ProductItem item={item} />
             </Grid2>
           ))}

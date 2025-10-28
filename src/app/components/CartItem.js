@@ -128,7 +128,7 @@ export default function CartItem({item}){
             </Box>
             <Box sx={{order:{sm:2}}}>
               <Typography variant="h4" fontWeight={500}>  
-                ${item.price}
+                USD {parseInt(item.price).toLocaleString('de-DE')}
               </Typography>
             </Box>   
           </Box>

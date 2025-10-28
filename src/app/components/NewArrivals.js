@@ -30,11 +30,11 @@ export default function NewArrivals() {
             <CardContent >
                  <Box sx={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
 
-                <Typography variant='h4' color='text.dark' fontWeight='semi-bold'>Title</Typography>
-                <Typography color='text.dark' fontWeight='bold'>$500</Typography>
+                <Typography variant='h4' color='text.dark' fontWeight='semi-bold'>Eames Lounge Chair</Typography>
+                <Typography color='text.dark' fontWeight='bold'>USD 1.200</Typography>
                  </Box>
                  <Divider/>   
-                 <Typography color='text.dark' mt={2} variant='body1'>Anim laboris ipsum ullanostrud.dent anim qui ad.Quis consectetur veniam reprehenderit culpa anim aliqua exercitation pariatur aute aliqua id elit.</Typography>
+                 <Typography color='text.dark' mt={2} variant='body1'>An iconic mid-century modern masterpiece featuring premium Italian leather upholstery and molded plywood construction. This timeless design combines comfort and elegance, perfect for creating a sophisticated living space.</Typography>
             </CardContent>
             <CardActions sx={{display:'flex',justifyContent:'space-between'}}>
                 <Button variant='contained'  sx={{width:'50%'}}>Add</Button> 
@@ -59,11 +59,11 @@ export default function NewArrivals() {
             <CardContent >
                  <Box sx={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
 
-                <Typography variant='h4' color='text.dark' fontWeight='semi-bold'>Title</Typography>
-                <Typography color='text.dark' fontWeight='bold'>$500</Typography>
+                <Typography variant='h4' color='text.dark' fontWeight='semi-bold'>Tulip Dining Table</Typography>
+                <Typography color='text.dark' fontWeight='bold'>USD 1.200</Typography>
                  </Box>
                  <Divider/>   
-                 <Typography color='text.dark' mt={2} variant='body1'>Anim laboris ipsum ullanostrud.dent anim qui ad.Quis consectetur veniam reprehenderit culpa anim aliqua exercitation pariatur aute aliqua id elit.</Typography>
+                 <Typography color='text.dark' mt={2} variant='body1'>A sculptural dining table featuring a sleek white marble top supported by a single pedestal base. This minimalist design creates an open, airy feel while providing ample space for elegant dining experiences.</Typography>
             </CardContent>
             <CardActions>
                 <Button variant='contained' sx={{width:'50%'}}>Add</Button>

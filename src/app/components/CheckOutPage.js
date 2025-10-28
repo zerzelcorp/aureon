@@ -37,6 +37,25 @@ export default function CheckoutPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handlePayment = async () => {
+    setLoading(true);
+    
+    // Simulate payment processing with 3ms delay before showing spinner
+    setTimeout(async () => {
+      try {
+        // Simulate API call or payment processing
+        await new Promise(resolve => setTimeout(resolve, 2000)); // 2 second processing
+        
+        // Navigate to success page or handle success
+        console.log("Payment processed successfully");
+        router.push('/checkout/success');
+      } catch (error) {
+        console.error("Payment failed:", error);
+        setLoading(false);
+      }
+    }, 3); // 3ms delay before showing spinner
+  };
+
   const calculateSubtotal = () => {
     return cartItems.reduce(
       (total, item) => total + item.price * item.quantity,
@@ -501,7 +520,7 @@ export default function CheckoutPage() {
                                 </IconButton>
                               </Box>
                     <Typography variant="h5" fontWeight={600}>
-                      ${item.price}
+                      USD {parseInt(item.price).toLocaleString('de-DE')}
                    
                     </Typography>
 
@@ -544,7 +563,7 @@ export default function CheckoutPage() {
               >
                 <Typography variant="h5">Subtotal</Typography>
                 <Typography variant="h5">
-                  ${calculateSubtotal().toFixed(2)}
+                  USD {calculateSubtotal().toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </Typography>
               </Box>
               <Box
@@ -558,7 +577,7 @@ export default function CheckoutPage() {
                   Shipping
                 </Typography>
                 <Typography variant="h6" color="primary.muted">
-                  ${shippingCost}
+                  USD {parseInt(shippingCost).toLocaleString('de-DE')}
                 </Typography>
               </Box>
               <Divider sx={{ width: "100%", backgroundColor: "text.light" }} />
@@ -575,12 +594,12 @@ export default function CheckoutPage() {
                   Total
                 </Typography>
                 <Typography variant="h4" fontWeight="bold">
-                  ${calculateTotal().toFixed(2)}
+                  USD {calculateTotal().toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </Typography>
               </Box>
               {/* Submit Button */}
               <Button
-                // onClick={handlePayment}
+                onClick={handlePayment}
                 fullWidth={true}
                 variant="contained"
                 size="large"

@@ -14,12 +14,13 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import Link from "next/link";
-import { ShoppingCart } from "@mui/icons-material";
+import { ShoppingCart, Search } from "@mui/icons-material";
 import useCartStore from "../stores/useCartStore";
 import Cart from "./Cart";
-import { Badge, Divider, Drawer, List, ListItemButton } from "@mui/material";
+import { Badge, Divider, Drawer, List, ListItemButton, TextField, InputAdornment } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 
 const pages = [
   {
@@ -41,7 +42,13 @@ function NavBar() {
   const [activeMenu, setActiveMenu] = useState(null); // 'living', 'dining', etc.
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const { openCartDrawer, isOpen, cartItems } = useCartStore();
+  // Search functionality
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [showSearchResults, setShowSearchResults] = useState(false);
+  const [searchFocused, setSearchFocused] = useState(false);
+
+  const { openCartDrawer, isOpen, cartItems, data, sofas, chairs, products, sideTables, coffeeTables, diningTables, sideBoards, diningChairs, beds, nightstands } = useCartStore();
   const [isActiveMenuDrawer, setOpenDrawerMenu] = useState(false);
 
   const toggleMenuDrawer = (newOpen) => () => {
@@ -56,13 +63,82 @@ function NavBar() {
     setAnchorElNav(null);
   };
 
+  // Search functionality
+  const handleSearchChange = (event) => {
+    const query = event.target.value;
+    setSearchQuery(query);
+    
+    if (query.length > 2) {
+      const allProducts = [
+        ...sofas,
+        ...chairs,
+        ...sideTables,
+        ...coffeeTables,
+        ...diningTables,
+        ...sideBoards,
+        ...diningChairs,
+        ...beds,
+        ...nightstands
+      ];
+      
+      const filtered = allProducts.filter(product =>
+        product.title.toLowerCase().includes(query.toLowerCase()) ||
+        product.description.toLowerCase().includes(query.toLowerCase())
+      );
+      
+      setSearchResults(filtered.slice(0, 5)); // Limit to 5 results
+      setShowSearchResults(true);
+    } else {
+      setSearchResults([]);
+      setShowSearchResults(false);
+    }
+  };
+
+  const handleSearchFocus = () => {
+    setSearchFocused(true);
+    if (searchQuery.length > 2) {
+      setShowSearchResults(true);
+    }
+  };
+
+  const handleSearchBlur = () => {
+    setSearchFocused(false);
+    // Delay hiding results to allow clicking on them
+    setTimeout(() => {
+      setShowSearchResults(false);
+    }, 200);
+  };
+
+  const handleClickOutside = (event) => {
+    if (!event.target.closest('.search-container')) {
+      setShowSearchResults(false);
+      setSearchFocused(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    if (searchQuery.trim()) {
+      // Navigate to search results page or filter products
+      console.log('Searching for:', searchQuery);
+      setShowSearchResults(false);
+    }
+  };
+
   useEffect(() => {
     console.log("clicked", openCartDrawer);
     console.log("drawer is open:", isOpen);
   }, [openCartDrawer]);
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: "transparent", p: 1 }}>
+    <AppBar position="static" sx={{ backgroundColor: "transparent", py: 0, px: 0.5 }}>
       <Cart />
       <Container maxWidth="xl" sx={{ m: 0, p: { xs: 0 } }}>
         <Toolbar
@@ -77,7 +153,7 @@ function NavBar() {
               lg: "center",
             },
             alignItems: "center",
-            gap: { xs: 0, lg: 2 },
+            gap: { xs: 0, lg: 0.5 },
             // backgroundColor:'red'
           }}
         >
@@ -86,12 +162,15 @@ function NavBar() {
               variant="h5"
               noWrap
               sx={{
-                mr: 4,
-                p: 2,
+                mr: 0,
+                p: 3,
                 display: { xs: "none", md: "flex" },
-                letterSpacing: ".3rem",
+                letterSpacing: ".8rem",
                 color: "inherit",
                 textDecoration: "none",
+                minWidth: "280px",
+                fontSize: "1.8rem",
+                fontWeight: 300,
               }}
             >
               AUREON
@@ -419,23 +498,27 @@ function NavBar() {
                 variant="h5"
                 noWrap
                 sx={{
-                  mr: { xs: 0, xl: 4 },
+                  mr: { xs: 0, xl: 0.5 },
                   flexGrow: 1,
-                  ml: 5,
-                  letterSpacing: ".4rem",
+                  ml: 2,
+                  letterSpacing: ".6rem",
                   color: "inherit",
+                  fontSize: "1.6rem",
+                  fontWeight: 300,
+                  minWidth: "200px",
                 }}
               >
                 AUREON
               </Typography>
             </Link>
           </Box>
+
           {/* DEFAULT BIG MENU LINKS */}
-          <Box sx={{ flexGrow: 1, display: { xs: "none", sm: "flex" }, gap: 1 }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", sm: "flex" }, gap: 2 }}>
             <MenuItem
               sx={{ 
                 cursor: "pointer",
-                px: 2,
+                px: 1,
                 py: 1,
                 borderRadius: 1,
                 transition: 'all 0.2s ease-in-out',
@@ -547,7 +630,7 @@ function NavBar() {
             <MenuItem
               sx={{ 
                 cursor: "pointer",
-                px: 2,
+                px: 1,
                 py: 1,
                 borderRadius: 1,
                 transition: 'all 0.2s ease-in-out',
@@ -644,7 +727,7 @@ function NavBar() {
             <MenuItem
               sx={{ 
                 cursor: "pointer",
-                px: 2,
+                px: 1,
                 py: 1,
                 borderRadius: 1,
                 transition: 'all 0.2s ease-in-out',
@@ -726,7 +809,7 @@ function NavBar() {
             <MenuItem
               sx={{ 
                 cursor: "pointer",
-                px: 2,
+                px: 1,
                 py: 1,
                 borderRadius: 1,
                 transition: 'all 0.2s ease-in-out',
@@ -809,8 +892,157 @@ function NavBar() {
               </Button>
             ))} */}
           </Box>
-          {/* CART ICON  */}
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+          {/* SEARCH BAR AND CART ICON */}
+          <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+            {/* Minimalist Search Bar */}
+            <Box className="search-container" sx={{ position: "relative" }}>
+              <TextField
+                variant="standard"
+                placeholder="Search furniture..."
+                value={searchQuery}
+                onChange={handleSearchChange}
+                onFocus={handleSearchFocus}
+                onBlur={handleSearchBlur}
+                sx={{
+                  width: "200px",
+                  '& .MuiInput-underline:before': {
+                    borderBottomColor: 'rgba(255, 255, 255, 0.3)',
+                  },
+                  '& .MuiInput-underline:hover:not(.Mui-disabled):before': {
+                    borderBottomColor: 'rgba(255, 255, 255, 0.5)',
+                  },
+                  '& .MuiInput-underline:after': {
+                    borderBottomColor: 'rgba(255, 255, 255, 0.9)',
+                    transform: searchFocused ? 'scaleX(1)' : 'scaleX(0)',
+                    transition: 'transform 0.2s ease-in-out',
+                  },
+                  '& .MuiInputBase-input': {
+                    color: 'white',
+                    fontSize: '0.9rem',
+                    '&::placeholder': {
+                      color: 'rgba(255, 255, 255, 0.5)',
+                    },
+                  },
+                }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Search sx={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '1.2rem' }} />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              
+              {/* Search Results Dropdown */}
+              <AnimatePresence>
+                {showSearchResults && searchResults.length > 0 && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                    transition={{ 
+                      duration: 0.2, 
+                      ease: [0.16, 1, 0.3, 1],
+                      staggerChildren: 0.05
+                    }}
+                    style={{
+                      position: 'absolute',
+                      top: '100%',
+                      left: 0,
+                      right: 0,
+                      zIndex: 1000,
+                      minWidth: '300px'
+                    }}
+                  >
+                    <Box sx={{
+                      backgroundColor: 'rgba(0, 0, 0, 0.95)',
+                      backdropFilter: 'blur(10px)',
+                      border: '1px solid rgba(255,255,255,0.1)',
+                      borderRadius: '8px',
+                      mt: 1,
+                      maxHeight: '400px',
+                      overflowY: 'auto'
+                    }}>
+                      {searchResults.map((product, index) => (
+                        <motion.div
+                          key={product.id}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ 
+                            duration: 0.4, 
+                            delay: index * 0.12,
+                            ease: [0.25, 0.46, 0.45, 0.94]
+                          }}
+                        >
+                          <Link href={`/${product.category}/${product.productType}/${product.id}`}>
+                            <Box sx={{
+                              p: 2,
+                              borderBottom: '1px solid rgba(255,255,255,0.1)',
+                              cursor: 'pointer',
+                              transition: 'all 0.2s ease-in-out',
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: 2,
+                              '&:hover': {
+                                backgroundColor: 'rgba(255,255,255,0.1)',
+                                transform: 'translateX(4px)',
+                              },
+                              '&:last-child': {
+                                borderBottom: 'none'
+                              }
+                            }}>
+                              <Box sx={{
+                                width: 50,
+                                height: 50,
+                                borderRadius: 1,
+                                overflow: 'hidden',
+                                flexShrink: 0,
+                                transition: 'transform 0.2s ease-in-out',
+                                '&:hover': {
+                                  transform: 'scale(1.05)'
+                                }
+                              }}>
+                                <Image
+                                  src={product.image}
+                                  alt={product.title}
+                                  width={50}
+                                  height={50}
+                                  style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    objectFit: 'cover'
+                                  }}
+                                />
+                              </Box>
+                              <Box sx={{ flex: 1, minWidth: 0 }}>
+                                <Typography variant="body2" sx={{ 
+                                  color: 'white', 
+                                  fontWeight: 500,
+                                  overflow: 'hidden',
+                                  textOverflow: 'ellipsis',
+                                  whiteSpace: 'nowrap',
+                                  transition: 'color 0.2s ease-in-out'
+                                }}>
+                                  {product.title}
+                                </Typography>
+                <Typography variant="caption" sx={{ 
+                  color: 'rgba(255,255,255,0.7)',
+                  transition: 'color 0.2s ease-in-out'
+                }}>
+                  USD {parseInt(product.price).toLocaleString('de-DE')}
+                </Typography>
+                              </Box>
+                            </Box>
+                          </Link>
+                        </motion.div>
+                      ))}
+                    </Box>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </Box>
+
+            {/* CART ICON */}
             <IconButton
               onClick={openCartDrawer}
               sx={{

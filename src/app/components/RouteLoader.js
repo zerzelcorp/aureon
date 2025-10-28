@@ -2,21 +2,51 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { CircularProgress, Box, LinearProgress, Typography } from '@mui/material';
 import { useRouteLoader } from '../stores/useRouteLoader';
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
 export default function RouteLoader(){
   const { isNavigating } = useRouteLoader();
   const [showLoader, setShowLoader] = useState(false);
+  const [loaderStartTime, setLoaderStartTime] = useState(null);
+
+  useEffect(() => {
+    if (isNavigating) {
+      setLoaderStartTime(Date.now());
+      // Only show loader if navigation takes more than 150ms (increased threshold)
+      const timeout = setTimeout(() => {
+        setShowLoader(true);
+      }, 150); // Increased from 100ms to 150ms
+      
+      return () => clearTimeout(timeout);
+    } else {
+      // If loader was shown, ensure minimum display time
+      if (showLoader && loaderStartTime) {
+        const elapsedTime = Date.now() - loaderStartTime;
+        const minDisplayTime = 250; // Increased minimum display time
+        const remainingTime = Math.max(0, minDisplayTime - elapsedTime);
+        
+        const timeout = setTimeout(() => {
+          setShowLoader(false);
+          setLoaderStartTime(null);
+        }, remainingTime);
+        
+        return () => clearTimeout(timeout);
+      } else {
+        setShowLoader(false);
+        setLoaderStartTime(null);
+      }
+    }
+  }, [isNavigating, showLoader, loaderStartTime]);
 
   return (
     <AnimatePresence>
-      {isNavigating && (
+      {showLoader && (
         <Box
           component={motion.div}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.15 }} // Faster fade in/out
           sx={{
             position: 'fixed',
             top: 0,
@@ -34,7 +64,7 @@ export default function RouteLoader(){
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
-            transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 25 }} // Faster spring animation
           >
           {/* <Typography variant='h5' sx={{mb:4,textAlign:'center'}}>Loading..</Typography> */}
             {/* <CircularProgress size={80} thickness={4} color='red'/> */}

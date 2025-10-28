@@ -51,8 +51,18 @@ const theme = useTheme();
 
   const goToCheckOut = async()=>{
    setLoading(true);
-   router.push('/checkout');
-   setLoading(false);
+   
+   // Show spinner after 3ms delay
+   setTimeout(async () => {
+     try {
+       // Simulate navigation processing
+       await new Promise(resolve => setTimeout(resolve, 500)); // Small delay for smooth transition
+       router.push('/checkout');
+     } catch (error) {
+       console.error("Navigation failed:", error);
+       setLoading(false);
+     }
+   }, 3); // 3ms delay before showing spinner
   }
 
   useEffect(() => {
@@ -192,16 +202,16 @@ const theme = useTheme();
         }}>
           <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
             <Typography variant="h5">Subtotal</Typography>
-            <Typography variant="h5">${calculateSubtotal().toFixed(2)}</Typography>
+            <Typography variant="h5">USD {calculateSubtotal().toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</Typography>
           </Box>
           <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
             <Typography variant="h6" color="primary.muted">Shipping</Typography>
-            <Typography variant="h6" color="primary.muted">${shippingCost}</Typography>
+            <Typography variant="h6" color="primary.muted">USD {parseInt(shippingCost).toLocaleString('de-DE')}</Typography>
           </Box>
           <Divider sx={{ width: "100%", backgroundColor: theme.palette.grey[700]}} />             <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between", mt: 6, mb: 4 }}>
             <Typography variant="h4" fontWeight="bold">Total</Typography>
             <Typography variant="h4" fontWeight="bold">
-              ${cartTotalBalance().toFixed(2)}
+              USD {cartTotalBalance().toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </Typography>
           </Box>
           <Button

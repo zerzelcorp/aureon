@@ -71,7 +71,7 @@ export default function HomePage() {
          style={{width:'100%'}}
          >
          <Typography variant='body1' sx={{
-           fontWeight:500,
+           fontWeight:300,
            fontSize:{xs:'1.3rem',sm:'1.5rem',md:'1.6rem',lg:'1.7rem'}
          }}>
          Immerse yourself in a world of elegance and distinction with Aureon, where luxury furniture and interior design come together to create unique spaces. Each piece is a statement of style, blending premium materials, sophisticated lines, and impeccable craftsmanship. Prestige, quality, and exclusivity define our essence.
@@ -88,7 +88,7 @@ export default function HomePage() {
         p:{xs:1.5,sm:2},
         width:{xs:'100%',sm:'auto'},
         minWidth:'180px',
-        fontSize:{xs:'1rem',md:'1.1rem'},
+        fontSize:{xs:'1.1rem',sm:'1.2rem',md:'1.3rem',lg:'1.4rem'},
         fontWeight:300,
         letterSpacing:'0.05em',
         textTransform:'none',
@@ -244,7 +244,7 @@ export default function HomePage() {
         </Typography>
         <Link href='living/chairs'>
           <Button variant='contained' sx={{
-            fontSize:'1rem',
+            fontSize:{xs:'1.1rem',sm:'1.2rem',md:'1.3rem',lg:'1.4rem'},
             fontWeight:300,
             textTransform:'none',
             letterSpacing:'0.05em',

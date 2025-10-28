@@ -23,9 +23,12 @@ useEffect(() => {
      <Card
     sx={{
       width: "100%",
+      height: "100%", // Make card take full height of grid cell
       cursor: "pointer",
       transition: "all 200ms ease-in-out",
       ":hover": { opacity: 0.6 },
+      display: "flex",
+      flexDirection: "column", // Stack content vertically
     }}
   >
     {/* <CardHeader>header</CardHeader> */}
@@ -35,37 +38,57 @@ useEffect(() => {
       title="furniture"
     />
     <Divider />
-    <CardContent>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection:{xs:'column',sm:'row'},
-          justifyContent: {xs:'start',sm:"space-between"},
-          alignItems: {xs:'start',sm:"center"},
-          gap:{xs:2,sm:0}
-        }}
-      >
-        <Typography
-          variant="h4"
-          color="text.dark"
-          fontWeight="semi-bold"
+    <CardContent sx={{ 
+      flex: 1, // Take remaining space
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-between"
+    }}>
+      <Box>
+        <Box
           sx={{
-            ":hover":{
-                opacity:0.6,
-                transition:'all 300ms easeInOut'
-            }
+            display: "flex",
+            flexDirection:{xs:'column',sm:'row'},
+            justifyContent: {xs:'start',sm:"space-between"},
+            alignItems: {xs:'start',sm:"center"},
+            gap:{xs:2,sm:0}
           }}
         >
-          {item.title}
-        </Typography>
-        <Typography color="text.dark" fontWeight="bold">
-         ${item.price}
+          <Typography
+            variant="h4"
+            color="text.dark"
+            fontWeight="semi-bold"
+            sx={{
+              ":hover":{
+                  opacity:0.6,
+                  transition:'all 300ms easeInOut'
+              }
+            }}
+          >
+            {item.title}
+          </Typography>
+           <Typography color="text.dark" fontWeight="semi-bold">
+             USD {parseInt(item.price).toLocaleString('de-DE')}
+            </Typography>
+        </Box>
+        <Divider />
+        <Typography 
+          color="text.dark" 
+          mt={2} 
+          variant="body1"
+          sx={{
+            display: "-webkit-box",
+            WebkitLineClamp: 3, // Limit to 3 lines
+            WebkitBoxOrient: "vertical",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            minHeight: "4.5rem", // Ensure consistent height
+            lineHeight: 1.5
+          }}
+        >
+         {item.description}
         </Typography>
       </Box>
-      <Divider />
-      <Typography color="text.dark" mt={2} variant="body1">
-       {item.description}
-      </Typography>
     </CardContent>
     <CardActions
       sx={{ display: "flex", justifyContent: "space-between" }}

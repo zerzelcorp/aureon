@@ -108,10 +108,13 @@ export default function ProductDetail() {
             sx={{
               minHeight: "100vh",
               width: "100%",
-              p: 4,
+              maxWidth: "1200px",
+              mx: "auto",
+              px: { xs: 2, sm: 4, md: 6, lg: 8 },
+              py: { xs: 4, sm: 6, md: 8 },
               display: "flex",
               flexDirection: "column",
-              gap: 4,
+              gap: 6,
             }}
           >
             <Box
@@ -126,6 +129,8 @@ export default function ProductDetail() {
                 height: "auto",
                 gap: 4,
                 mt: 4,
+                alignItems: "stretch",
+                minHeight: { xs: "auto", md: "600px" },
               }}
             >
               {/* <Box sx={{display:'flex'}}>
@@ -141,12 +146,14 @@ export default function ProductDetail() {
                 sx={{
                   order: { xs: 1, sm: 1, md: 1, lg: 1 },
                   display: "flex",
-                  justifyContent: { sm: "center", lg: "center" },
+                  justifyContent: "center",
                   alignItems: "center",
-                  width: { xs: "100%", sm: "100%", md: "100%", lg: "50%" },
-                  maxWidth: 500,
-                  aspectRatio: "1 / 1",
+                  width: { xs: "100%", sm: "100%", md: "100%", lg: "60%" },
                   position: "relative",
+                  pr: { lg: 6 },
+                  height: { xs: "400px", sm: "500px", md: "600px" },
+                  maxHeight: { xs: "400px", sm: "500px", md: "600px" },
+                  minHeight: { xs: "400px", sm: "500px", md: "600px" },
                 }}
               >
                 <Image
@@ -167,28 +174,106 @@ export default function ProductDetail() {
                   order: { xs: 2, sm: 2, md: 2, lg: 2 },
                   display: "flex",
                   flexDirection: "column",
-                  mt: { xs: 1 },
-                  // alignItems: "center",
-                  // pl:{md:8},
-                  // pr:{md:8},
-                  width: { sm: "100%", md: "100%", lg: "50%" },
+                  mt: { xs: 0 },
+                  width: { xs: "100%", sm: "100%", md: "100%", lg: "40%" },
+                  pl: { lg: 4 },
+                  minWidth: { lg: "350px" },
+                  height: { xs: "400px", sm: "500px", md: "600px" },
+                  maxHeight: { xs: "400px", sm: "500px", md: "600px" },
+                  minHeight: { xs: "400px", sm: "500px", md: "600px" },
+                  justifyContent: "flex-start",
+                  py: { xs: 0, sm: 0, md: 0 },
                 }}
               >
                 <Box
                   sx={{
                     display: "flex",
-                    gap: { xs: 2, sm: 2, lg: 0 },
-                    flexDirection: { xs: "column", sm: "column", lg: "row" },
+                    flexDirection: { xs: "column", sm: "column", lg: "column" },
                     justifyContent: "space-between",
                     width: "100%",
+                    mb: 3,
+                    alignItems: "flex-start",
                   }}
                 >
-                  <Typography variant="h4">{product.title}</Typography>
-                  <Typography variant="h5">${product.price}</Typography>
+                  <Typography variant="h4" sx={{ fontWeight: 500, mb: 2 }}>
+                    {product.title}
+                  </Typography>
+                  <Box sx={{
+                    backgroundColor: "rgba(0,0,0,0.05)",
+                    border: "1px solid rgba(0,0,0,0.1)",
+                    borderRadius: 2,
+                    py: 2,
+                    backdropFilter: "blur(10px)",
+                    ml: 0,
+                  }}>
+                    <Typography variant="h5" sx={{ fontWeight: 500, color: "text.primary" }}>
+                      USD {parseInt(product.price).toLocaleString('de-DE')}
+                    </Typography>
+                  </Box>
                 </Box>
-                <Typography variant="body1" mt={6}>
+                
+                {/* Gradient divider line */}
+                <Box sx={{
+                  width: '100%',
+                  height: '1px',
+                  backgroundColor: 'rgba(255,255,255,0.8)',
+                  mb: 2,
+                }} />
+                <Typography variant="body1" mt={1} sx={{ lineHeight: 1.7, mb: 3, fontSize: { xs: "1rem", sm: "1.1rem", md: "1.2rem" } }}>
                   {product.description}
                 </Typography>
+                
+                {/* Product Qualities */}
+                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, mb: 4 }}>
+                  <Box sx={{
+                    backgroundColor: "rgba(0,0,0,0.05)",
+                    border: "1px solid rgba(128,128,128,0.3)",
+                    borderRadius: 2,
+                    px: 2,
+                    py: 1,
+                    backdropFilter: "blur(10px)",
+                  }}>
+                    <Typography variant="caption" sx={{ fontWeight: 500, color: "white" }}>
+                      Pure Italian Leather
+                    </Typography>
+                  </Box>
+                  <Box sx={{
+                    backgroundColor: "rgba(0,0,0,0.05)",
+                    border: "1px solid rgba(128,128,128,0.3)",
+                    borderRadius: 2,
+                    px: 2,
+                    py: 1,
+                    backdropFilter: "blur(10px)",
+                  }}>
+                    <Typography variant="caption" sx={{ fontWeight: 500, color: "white" }}>
+                      Handcrafted
+                    </Typography>
+                  </Box>
+                  <Box sx={{
+                    backgroundColor: "rgba(0,0,0,0.05)",
+                    border: "1px solid rgba(128,128,128,0.3)",
+                    borderRadius: 2,
+                    px: 2,
+                    py: 1,
+                    backdropFilter: "blur(10px)",
+                  }}>
+                    <Typography variant="caption" sx={{ fontWeight: 500, color: "white" }}>
+                      Sustainable Materials
+                    </Typography>
+                  </Box>
+                  <Box sx={{
+                    backgroundColor: "rgba(0,0,0,0.05)",
+                    border: "1px solid rgba(128,128,128,0.3)",
+                    borderRadius: 2,
+                    px: 2,
+                    py: 1,
+                    backdropFilter: "blur(10px)",
+                  }}>
+                    <Typography variant="caption" sx={{ fontWeight: 500, color: "white" }}>
+                      5-Year Warranty
+                    </Typography>
+                  </Box>
+                </Box>
                 <Box
                   sx={{
                     display: "flex",
@@ -196,14 +281,12 @@ export default function ProductDetail() {
                       xs: "column",
                       sm: "column",
                       md: "row",
-                      lg: "row",
+                      lg: "column",
                     },
                     width: "100%",
-                    gap: 4,
-                    mt: 6,
-                    // mt: {sm:6,lg:'auto'},
-                    // mb:{sm:6,lg:0},
-                    mb: 6,
+                    gap: { xs: 3, sm: 3, md: 4, lg: 3 },
+                    mt: { xs: 4, sm: 4, md: 6, lg: 4 },
+                    mb: { xs: 4, sm: 4, md: 6, lg: 4 },
                   }}
                 >
                   {/* <motion.div style={{ width: "100%" }}> */}
@@ -224,9 +307,17 @@ export default function ProductDetail() {
                       // }}
                       sx={{
                         alignItems: "flex-start",
-                        p: 2,
-                        width: { sm: "50%" },
+                        p: { xs: 1.5, sm: 1.8, md: 2 },
+                        width: { xs: "100%", sm: "100%", md: "60%", lg: "100%" },
                         fontFamily: "Geist",
+                        fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
+                        minHeight: { xs: "44px", sm: "48px", md: "52px" },
+                        borderRadius: 2,
+                        transition: "all 0.3s ease-in-out",
+                        "&:hover": {
+                          transform: "translateY(-2px)",
+                          boxShadow: 4,
+                        },
                       }}
                     >
                       Add To Cart
@@ -262,11 +353,13 @@ export default function ProductDetail() {
                       gap: 4,
                       backgroundColor: "primary.dark",
                       color: "primary.light",
-                      borderRadius: "8px",
+                      borderRadius: 2,
                       border: 1,
                       borderColor: grey[900],
-                      width: "20%",
-                      minWidth: "200px",
+                      width: { xs: "100%", sm: "100%", md: "40%", lg: "100%" },
+                      minWidth: { xs: "200px", sm: "220px", md: "180px", lg: "200px" },
+                      height: { xs: "48px", sm: "52px", md: "56px" },
+                      px: 2,
                     }}
                   >
                     <IconButton
@@ -275,7 +368,12 @@ export default function ProductDetail() {
                     >
                       <Remove />
                     </IconButton>
-                    <Typography variant="h6" sx={{ ml: 2, mr: 2 }}>
+                    <Typography variant="h6" sx={{ 
+                      ml: 2, 
+                      mr: 2, 
+                      fontSize: { xs: "1.1rem", sm: "1.2rem", md: "1.3rem" },
+                      fontWeight: 500,
+                    }}>
                       {getItemQuantity(product.id)}
                     </Typography>
 
@@ -311,13 +409,13 @@ export default function ProductDetail() {
                     id="panel1-header"
                   >
                     <Typography component="span">
-                      Composition,Care & Origin
+                      Composition, Care & Origin
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Suspendisse malesuada lacus ex, sit amet blandit leo
-                    lobortis eget.
+                    <Typography variant="body2" sx={{ lineHeight: 1.6 }}>
+                      Crafted from premium Italian leather sourced from certified tanneries, this piece features solid oak wood construction with hand-applied finishes. Each component undergoes rigorous quality control to ensure longevity and beauty. Care instructions include regular conditioning with leather cream and dusting with a soft cloth.
+                    </Typography>
                   </AccordionDetails>
                 </Accordion>
                 <Accordion
@@ -333,9 +431,9 @@ export default function ProductDetail() {
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Suspendisse malesuada lacus ex, sit amet blandit leo
-                    lobortis eget.
+                    <Typography variant="body2" sx={{ lineHeight: 1.6 }}>
+                      This item is currently available in our flagship stores in New York, Los Angeles, and Miami. Please call ahead to confirm availability and schedule a viewing appointment. Our design consultants are available to assist with measurements and styling recommendations. Store pickup is available within 2-3 business days.
+                    </Typography>
                   </AccordionDetails>
                 </Accordion>
                 <Accordion
@@ -347,13 +445,13 @@ export default function ProductDetail() {
                     id="panel3-header"
                   >
                     <Typography component="span">
-                      Shipping,Exchanges and Returns
+                      Shipping, Exchanges and Returns
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Suspendisse malesuada lacus ex, sit amet blandit leo
-                    lobortis eget.
+                    <Typography variant="body2" sx={{ lineHeight: 1.6 }}>
+                      Free white-glove delivery within 50 miles of our stores. Nationwide shipping available with professional installation service. 30-day return policy for unused items in original packaging. Exchanges accepted within 60 days with receipt. All items come with comprehensive care instructions and warranty documentation.
+                    </Typography>
                   </AccordionDetails>
                 </Accordion>
               </Box>
