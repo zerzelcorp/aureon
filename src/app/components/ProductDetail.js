@@ -455,7 +455,7 @@ export default function ProductDetail() {
                   </AccordionDetails>
                 </Accordion>
               </Box>
-              <Box
+        {/*       <Box
                 id="contact"
                 pt={4}
                 width="50%"
@@ -473,7 +473,7 @@ export default function ProductDetail() {
                 <Button variant="contained" sx={{ width: "50%" }}>
                   Submit
                 </Button>
-              </Box>
+              </Box> */}
             </Box>
           </Box>
         ) : (
